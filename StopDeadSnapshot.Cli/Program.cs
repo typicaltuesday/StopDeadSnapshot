@@ -67,8 +67,11 @@ var points = (await Task.WhenAll(maps.Select((map) => GetLeaderboardScoresAsync(
 
 var now = $"{DateTimeOffset.Now:u}".Replace(':', '-');
 
-await WriteRunsToFileAsync($"./StopDead {now} Times.csv", LeaderboardType.Time, times);
-await WriteRunsToFileAsync($"./StopDead {now} Points.csv", LeaderboardType.Points, points);
+await WriteRunsToFileAsync($"./Stop Dead {now} Times.csv", LeaderboardType.Time, times);
+File.Copy($"./Stop Dead {now} Times.csv", "./Stop Dead Latest Times.csv", true);
+
+await WriteRunsToFileAsync($"./Stop Dead {now} Points.csv", LeaderboardType.Points, points);
+File.Copy($"./Stop Dead {now} Points.csv", "./Stop Dead Latest Points.csv", true);
 
 SteamClient.Shutdown();
 
