@@ -117,7 +117,7 @@ async Task WriteRunsToFileAsync(string path, LeaderboardType leaderboardType, IE
     builder.AppendLine($"map,{header},steam_id_64,name");
     foreach (var run in runs)
     {
-        builder.AppendLine($"{run.Map},{run.Score},{run.SteamID64},{run.Name}");
+        builder.AppendLine($"{run.Map},{run.Score},{run.SteamID64},\"{run.Name}\"");
     }
 
     await File.WriteAllTextAsync(path, builder.ToString());
